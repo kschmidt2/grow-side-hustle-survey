@@ -13,13 +13,13 @@
 // }
 
 // bolds the subhead if there is no headline
-let subhead = document.getElementsByClassName("chart-subhead"),
-    headline = document.getElementById("chart-head");
-    if (!headline) {
-        for(var i = 0; i < subhead.length; i++) {
-            subhead[i].style.fontWeight = "600";
-        }       
-     }
+// let subhead = document.getElementsByClassName("chart-subhead"),
+//     headline = document.getElementById("chart-head");
+//     if (!headline) {
+//         for(var i = 0; i < subhead.length; i++) {
+//             subhead[i].style.fontWeight = "600";
+//         }       
+//      }
 
 Highcharts.setOptions({
     lang: {
@@ -27,11 +27,13 @@ Highcharts.setOptions({
     }
 });
 
-let chartId = document.getElementById("chart-container");
+let chartId1 = document.getElementById("chart-container-side-hustle1");
+
+let chartId2 = document.getElementById("chart-container-side-hustle2");
 
 // checks for the chart ID and displays a backup image if the browser can't find it
 setTimeout(function() {
-    if(chartId.innerHTML === "") {
+    if(chartId1.innerHTML === "" || chartId2.innerHTML === "") {
         // console.log('noId');
         let chartArea = document.getElementsByClassName("chart-area");
         for(var i = 0; i < chartArea.length; i++) {
@@ -45,7 +47,7 @@ setTimeout(function() {
 },500);
 
 function drawHighcharts() {
-    Highcharts.chart(chartId, {
+    Highcharts.chart(chartId1, {
         chart: {
             type: 'bar',
             styledMode: true,
@@ -56,7 +58,7 @@ function drawHighcharts() {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1C-BEXVp0APJH2hA9AiU0MnyUtuA82NkwQ47wP3B4X68'
         },
         // for bar charts only
         plotOptions: {
@@ -82,11 +84,7 @@ function drawHighcharts() {
         //     }
         // },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
@@ -117,7 +115,90 @@ function drawHighcharts() {
             },
             chartOptions: {
                 chart: {
-                spacingRight: 10
+                spacingRight: 15
+                },
+                legend: {
+                    align: 'left',
+                    x: -18
+                },
+                tooltip: {
+                    enabled: false
+                }
+            }
+            }]
+        }
+    });
+    Highcharts.chart(chartId2, {
+        chart: {
+            type: 'bar',
+            styledMode: true,
+            spacingBottom: 25,
+            spacingRight: 100,
+            spacingLeft: 45
+        }, 
+        title: {
+            text: null
+        },
+        data: {
+            googleSpreadsheetKey: '1C-BEXVp0APJH2hA9AiU0MnyUtuA82NkwQ47wP3B4X68',
+            googleSpreadsheetWorksheet: 2
+        },
+        // for bar charts only
+        plotOptions: {
+            series: {
+                groupPadding: 0.1
+            } 
+        },
+        // for line charts only
+        // plotOptions: {
+        //     series: {
+        //         lineWidth: 1,
+        //         // clip: false,
+        //         marker: {
+        //             enabled: false,
+        //             symbol: 'circle',
+        //             fillColor: '#ffffff',
+        //             states: {
+        //                 hover: {
+        //                     fillColor: '#ffffff'
+        //                 }
+        //             }
+        //         }
+        //     }
+        // },
+        legend: {
+            enabled: false
+        },
+        xAxis: {
+            labels: {
+                style: {
+                    whiteSpace: 'nowrap'
+                }
+            },
+            tickLength: 5
+        },
+        yAxis: {
+            title: false,
+            labels: {
+                useHTML: true,
+                overflow: 'allow'
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+            shadow: false,
+            padding: 10
+        },
+        responsive: {
+            rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                chart: {
+                spacingRight: 15
                 },
                 legend: {
                     align: 'left',
